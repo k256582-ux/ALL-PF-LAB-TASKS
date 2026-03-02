@@ -823,3 +823,64 @@ int main() {
     return 0;
 }
 
+## PF LAB # 6:
+
+TASK 1
+#include<iostream>
+int main ()
+{
+	int members,status;
+	int Checked=0;
+	for(members=1;members<=25;members++)
+	{
+		printf("Please enter 1 for present: ");
+	                scanf("%d",&status);
+		if (status==1)
+		{
+			Checked=Checked+1;
+		}
+		
+		else
+		{
+			printf("Please enter a Valid status! ");
+		}
+    }
+    printf("The total number of Present students: %d ",Checked);
+        
+    return 0;
+}
+
+TASK 2:
+
+#include<stdio.h>
+int main()
+{
+	float used, Balance;
+	
+	printf("Enter your available data balance (in MB): ");
+    scanf("%f", &Balance);
+	
+	while(Balance>0)
+	{
+		printf("Please enter the data used in MB: ");
+        scanf("%f",&used);
+        
+        Balance= Balance-used;
+        
+        if (Balance > 0) 
+		{
+			printf("Remaining Balance is: %.2f MB\n", Balance);
+		} 
+	    else 
+		{
+			printf("There is no Remaining Balance!\n");
+		}
+        
+	}
+
+    return 0;
+	
+}
+
+TASK 3:
+
