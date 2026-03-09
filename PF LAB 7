@@ -21,3 +21,30 @@ int main()
 }
 
 TASK # 2:
+#include <stdio.h>
+
+int main() {
+    int arr[10], target, count = 0;
+
+    printf("Enter 10 numbers:\n");
+    for(int i = 0; i < 10; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter the number to search: ");
+    scanf("%d", &target);
+
+    for(int i = 0; i < 10; i++) {
+        if(arr[i] == target) {
+            count++;
+        }
+    }
+
+    if(count > 0) {
+        printf("The number %d occurred %d times.\n", target, count);
+    } else {
+        printf("Number not found.\n");
+    }
+
+    return 0;
+}
