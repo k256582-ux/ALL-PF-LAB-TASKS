@@ -1,0 +1,23 @@
+TASK # 1:
+#include<stdio.h>
+int main()
+{
+	int num[]={1,2,3,4,5};
+	int length,temp,i,tem;
+	length=sizeof(num)/sizeof(num[0]);
+	temp=num[length-1];
+	
+	for(i=length-1; i>0; i--)
+	{
+		num[i]=num[i-1];
+	}
+	num[0]=temp;
+	
+	for(i=0; i<length; i++)
+	{
+		printf("%d",num[i]);
+	}
+	
+}
+
+TASK # 2:
