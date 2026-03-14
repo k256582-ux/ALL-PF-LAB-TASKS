@@ -22,29 +22,221 @@ int main()
 
 TASK # 2:
 #include <stdio.h>
-
-int main() {
-    int arr[10], target, count = 0;
+int main() 
+{
+    int arr[10], search, count = 0;
 
     printf("Enter 10 numbers:\n");
-    for(int i = 0; i < 10; i++) {
+
+    for(int i=0; i<10; i++) 
+    {
         scanf("%d", &arr[i]);
     }
 
-    printf("Enter the number to search: ");
-    scanf("%d", &target);
+    printf("Enter number to search: ");
+    scanf("%d", &search);
 
-    for(int i = 0; i < 10; i++) {
-        if(arr[i] == target) {
+    for(int i=0; i<10; i++) 
+    {
+        if(arr[i]==search)
+        {
             count++;
         }
     }
 
-    if(count > 0) {
-        printf("The number %d occurred %d times.\n", target, count);
-    } else {
-        printf("Number not found.\n");
+    if(count>0) 
+    {
+        printf("The number %d occurred %d times", search, count);
     }
+    else 
+    {
+        printf("Number not found");
+    }
+
+    return 0;
+}
+
+TASK # 3:
+
+#include<stdio.h>
+int main()
+{
+    int pass[10], fail[10];
+    int mark, i;
+    int p=0, f=0;
+    int sumPass=0, sumFail=0;
+
+    printf("Enter quiz marks:\n");
+
+    for(i=0; i<10; i++)
+    {
+        scanf("%d",&mark);
+
+        if(mark==-1)
+            break;
+
+        if(mark>=5 && mark<=10)
+        {
+            pass[p]=mark;
+            sumPass=sumPass+mark;
+            p++;
+        }
+        else if(mark>=0 && mark<5)
+        {
+            fail[f]=mark;
+            sumFail=sumFail+mark;
+            f++;
+        }
+    }
+
+    printf("\nPass Students Marks:\n");
+    for(i=0; i<p; i++)
+        printf("%d ",pass[i]);
+
+    if(p>0)
+        printf("\nAverage Pass Marks: %.2f",(float)sumPass/p);
+
+    printf("\n\nFail Students Marks:\n");
+    for(i=0; i<f; i++)
+        printf("%d ",fail[i]);
+
+    if(f>0)
+        printf("\nAverage Fail Marks: %.2f",(float)sumFail/f);
+
+    return 0;
+}
+
+TASK # 4:
+#include<stdio.h>
+int main()
+{
+    char str[100];
+    int i=0;
+
+    printf("Enter a sentence: ");
+    scanf("%[^\n]",str);
+
+    for(i=0; str[i]!='\0'; i++)
+    {
+        if(str[i]>='a' && str[i]<='z')
+        {
+            str[i]= str[i]-32;
+        }
+        else if(str[i]>='A' && str[i]<='Z')
+        {
+            str[i]=str[i]+32;
+        }
+    }
+
+    printf("message: %s",str);
+
+    return 0;
+}
+
+TASK # 5:
+
+#include<stdio.h>
+int main()
+{
+    int num[10];
+    int i, max, min;
+
+    printf("Enter 10 integers:\n");
+    for(i=0; i<10; i++)
+    {
+        scanf("%d",&num[i]);
+    }
+
+    max= num[0];
+    min= num[0];
+
+    for(i=1; i<10; i++)
+    {
+        if(num[i]> max)
+            max= num[i];
+
+        if(num[i]< min)
+            min= num[i];
+    }
+
+    printf("Difference = %d", max-min);
+    return 0;
+}
+
+TASK # 6:
+#include<stdio.h>
+int main()
+{
+    char str[100];
+    int i=0, vowels=0, consonants=0;
+
+    printf("Enter a word: ");
+    scanf("%s",str);
+
+    for(i=0; str[i]!='\0'; i++)
+    {
+        if(str[i]=='a'||str[i]=='e'||str[i]=='i'||str[i]=='o'||str[i]=='u'||
+           str[i]=='A'||str[i]=='E'||str[i]=='I'||str[i]=='O'||str[i]=='U')
+        {
+            vowels++;
+        }
+        else if((str[i]>='a' && str[i]<='z') || (str[i]>='A' && str[i]<='Z'))
+        {
+            consonants++;
+        }
+    }
+
+    printf("Vowels = %d\n",vowels);
+    printf("Consonants = %d",consonants);
+
+    return 0;
+}
+
+TASK # 7:
+#include<stdio.h>
+int main()
+{
+    int arr[10];
+    int i,j;
+
+    printf("Enter 10 integers:\n");
+
+    for(i=0; i<10; i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+
+    for(i=0; i<10; i++)
+    {
+        for(j=i+1; j<10; j++)
+        {
+            if(arr[i]==arr[j])
+            {
+                arr[j] = -1;
+            }
+        }
+    }
+
+    printf("Updated array:\n");
+
+    for(i=0; i<10; i++)
+    {
+        printf("%d ",arr[i]);
+    }
+
+    return 0;
+}
+
+TASK # 8:
+#include<stdio.h>
+int main()
+{
+    char str[100];
+
+    printf("Enter characters: ");
+    scanf("%[^A-Za-z]",str);
+
+    printf("non alphabetic characters: %s",str);
 
     return 0;
 }
