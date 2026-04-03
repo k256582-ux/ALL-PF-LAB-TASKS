@@ -1,1 +1,154 @@
 
+##TASK # 1:
+
+#include<stdio.h>
+
+float triageScore(int s, int a, int v);
+
+int main()
+{
+    int sev, age, vitals;
+
+    printf("Enter severity: ");
+    scanf("%d", &sev);
+
+    printf("Enter age risk: ");
+    scanf("%d", &age);
+
+    printf("Enter vitals: ");
+    scanf("%d", &vitals);
+
+    float score;
+    score = triageScore(sev, age, vitals);
+
+    printf("Score = %.2f\n", score);
+
+    if(score > 7)
+    {
+        printf("Immediate attention required\n");
+    }
+    else
+    {
+        if(score>=4)
+        {
+            printf("Moderate priority\n");
+        }
+        else
+        {
+            printf("Can wait\n");
+        }
+    }
+
+    return 0;
+}
+
+float triageScore(int s, int a, int v)
+{
+    float total;
+
+    total =(s * 0.5)+(a * 0.3)+(v * 0.2);
+
+    return total;
+}
+
+
+
+##TASK # 2:
+
+#include <stdio.h>
+float Discount(float p, int t) 
+{
+    float final;
+    if (t == 1) 
+	{
+		final = p * 0.95;
+	}
+    else if (t == 2)
+	{
+		final = p * 0.90;
+	} 
+    else if (t == 3)
+	{
+		final = p * 0.80;
+	} 
+    else if (t == 4)
+	{
+		final = p * 0.70;
+	} 
+    else
+	{
+    	final = p;
+	} 
+    return final;
+}
+void output(float o, float d) 
+{
+    float delivery = 0;
+    if (d < 2000)
+	{
+		delivery = 150;
+	} 
+    printf("\n--- Bill ---\n");
+    printf("Original: %.2f\nDiscounted: %.2f\n", o, d);
+    printf("Delivery: %.2f\nTotal: %.2f\n", delivery, d + delivery);
+}
+int main() 
+{
+    float p1; 
+	int t1;
+    printf("price: "); 
+	scanf("%f", &p1);
+    printf("enter tier : "); scanf("%d", &t1);
+    float d1 = Discount(p1, t1);
+    output(p1, d1);
+    
+    return 0;
+}
+
+
+
+##TASK # 4:
+
+#include <stdio.h>
+
+int validate-pin( int stored, int entered)
+{
+	if(stored == entered )
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+int main()
+{
+	int stored= 4729;
+	int entered;
+	
+	for(int i=1; i<=3; i++)
+	{
+		printf("enter your pin");
+		scanf("%d", &entered);
+		
+		if(validate-pin(stored, entered))
+		{
+			printf("acces granted\n");
+			break;
+		}
+		else
+        {
+            if (i<3)
+            {
+                printf("incorrect pin, attempts left are: %d\n", 3 - i);
+            }
+            else
+            {
+                printf("card blocked. contact your bank.\n");
+            }
+        }
+    }
+	
+}
