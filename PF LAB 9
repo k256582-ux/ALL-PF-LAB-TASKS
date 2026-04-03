@@ -105,6 +105,73 @@ int main()
     return 0;
 }
 
+##TASK # 3:
+#include <stdio.h>
+int totalRuns(int arr[], int n)
+{
+    int i, sum = 0;
+    for(i = 0; i < n; i++)
+    {
+        sum = sum + arr[i];
+    }
+    return sum;
+}
+
+int highestScore(int arr[], int n)
+{
+    int i, max;
+    max = arr[0]; 
+    for(i = 1; i < n; i++)
+    {
+        if(arr[i] > max)
+        {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+int aboveAverage(int arr[], int n, float avg)
+{
+    int i, count = 0;
+    for(i = 0; i < n; i++)
+    {
+        if(arr[i] > avg)
+        {
+            count = count + 1;
+        }
+    }
+    return count;
+}
+int main()
+{
+    int scores[10];
+    int i;
+    int total, highest, count;
+    float average;
+    // input scores
+    for(i = 0; i < 10; i++)
+    {
+        printf("Enter runs for match %d: ", i + 1);
+        scanf("%d", &scores[i]);
+    }
+ 
+    total = totalRuns(scores, 10);
+    highest = highestScore(scores, 10);
+
+    average = (float) total / 10;
+    count = aboveAverage(scores, 10, average);
+
+    printf("\n--- Performance Report ---\n");
+    printf("Total Runs: %d\n", total);
+    printf("Average Runs: %.2f\n", average);
+    printf("Highest Score: %d\n", highest);
+    printf("Matches above average: %d\n", count);
+    return 0;
+}
+
+
+
 
 
 ##TASK # 4:
@@ -151,4 +218,184 @@ int main()
         }
     }
 	
+}
+
+
+
+
+
+
+
+##TASK # 5:
+
+#include <stdio.h>
+
+float toMegajoules(float kwh)
+{
+    return kwh * 3.6;
+}
+
+float toBTU(float kwh)
+{
+    return kwh * 3412.14;
+}
+
+float toCalories(float kwh)
+{
+    return kwh * 859845;
+}
+
+int main()
+{
+    float kwh;
+    float mj, btu, cal;
+
+    printf("Enter energy in kWh: ");
+    scanf("%f", &kwh);
+
+   
+    mj = toMegajoules(kwh);
+    btu = toBTU(kwh);
+    cal = toCalories(kwh);
+
+    printf("\n--- Conversion Report ---\n");
+    printf("Energy in kWh: %.2f\n", kwh);
+    printf("Megajoules: %.2f MJ\n", mj);
+    printf("BTU: %.2f\n", btu);
+    printf("Calories: %.2f\n", cal);
+
+    printf("\nDirect call (MJ): %.2f MJ\n", toMegajoules(kwh));
+
+    return 0;
+}
+
+
+
+
+
+
+
+##TASK # 6:
+
+#include <stdio.h>
+float totalRevenue(float bills[], int n)
+{
+    int i;
+    float sum = 0;
+
+    for(i = 0; i < n; i++)
+    {
+        sum = sum + bills[i];
+    }
+
+    return sum;
+}
+
+
+int bestTable(float bills[], int n)
+{
+    int i, maxIdx = 0;
+
+    for(i = 1; i < n; i++)
+    {
+        if(bills[i] > bills[maxIdx])
+        {
+            maxIdx = i;
+        }
+    }
+
+    return maxIdx;
+}
+
+
+int isProfitable(float total)
+{
+    if(total > 10000)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int main()
+{
+    float bills[5];
+    int i;
+    float total;
+    int best;
+    int profit;
+
+
+    for(i = 0; i < 5; i++)
+    {
+        printf("Enter bill for table %d: ", i + 1);
+        scanf("%f", &bills[i]);
+    }
+
+    total = totalRevenue(bills, 5);
+    best = bestTable(bills, 5);
+    profit = isProfitable(total);
+
+    printf("\n--- Closing Summary ---\n");
+    printf("Total Revenue: Rs. %.2f\n", total);
+    printf("Best Performing Table: Table %d\n", best + 1);
+
+    if(profit == 1)
+    {
+        printf("Status: Profitable\n");
+    }
+    else
+    {
+        printf("Status: Not Profitable\n");
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+##TASK # 7:
+
+#include <stdio.h>
+int main()
+{
+    int arr[6] = {45, 50, 60, 30, 55, 40};
+    int *p = arr;
+    int i, highest;
+
+    printf("Original Marks:\n");
+    for(i = 0; i < 6; i++)
+    {
+        printf("%d ", *(p + i));
+    }
+
+
+    highest = *(p + 0);
+    for(i = 1; i < 6; i++)
+    {
+        if(*(p + i) > highest)
+        {
+            highest = *(p + i);
+        }
+    }
+
+
+    for(i = 0; i < 6; i++)
+    {
+        *(p + i) = (int)(((float)*(p + i) / highest) * 100);
+    }
+
+    printf("\n\nScaled Marks:\n");
+    for(i = 0; i < 6; i++)
+    {
+        printf("%d ", *(p + i));
+    }
+
+    return 0;
 }
