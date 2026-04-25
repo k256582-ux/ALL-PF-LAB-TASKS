@@ -1,0 +1,257 @@
+TASK # 1:
+
+#include <stdio.h>
+
+int totalPower(int n) {
+    if (n == 1)
+        return 100;
+
+    return (2 * totalPower(n - 1)) + 100;
+}
+
+int main() {
+    int f;
+    printf("Floors: ");
+    scanf("%d", &f);
+
+    printf("Total: %d kWh\n", totalPower(f));
+    return 0;
+}
+
+
+
+
+TASK # 2:
+
+#include <stdio.h>
+#include <ctype.h>
+
+void countAll(char *s, int *upper, int *digits) {
+    if (*s == '\0')
+        return;
+
+    if (*s >= 'A' && *s <= 'Z')
+        (*upper)++;
+
+    if (*s >= '0' && *s <= '9')
+        (*digits)++;
+
+    countAll(s + 1, upper, digits);
+}
+
+int main() {
+    char str[100];
+    int u = 0, d = 0;
+
+    printf("Enter password: ");
+    scanf("%s", str);
+
+    countAll(str, &u, &d);
+
+    printf("Uppercase: %d\nDigits: %d\n", u, d);
+    return 0;
+}
+
+
+
+TASK # 3:
+
+#include <stdio.h>
+
+int ways(int n) {
+    if (n <= 1)
+        return 1;
+    return ways(n - 1) + ways(n - 2);
+}
+
+void showPaths(int n, int arr[], int idx) {
+    if (n == 0) {
+        for (int i = 0; i < idx; i++) {
+            printf("%d", arr[i]);
+            if (i < idx - 1) printf("+");
+        }
+        printf("\n");
+        return;
+    }
+
+    if (n >= 1) {
+        arr[idx] = 1;
+        showPaths(n - 1, arr, idx + 1);
+    }
+
+    if (n >= 2) {
+        arr[idx] = 2;
+        showPaths(n - 2, arr, idx + 1);
+    }
+}
+
+int main() {
+    int n, path[20];
+
+    printf("Enter N: ");
+    scanf("%d", &n);
+
+    printf("Ways: %d\n", ways(n));
+    showPaths(n, path, 0);
+
+    return 0;
+}
+
+
+
+
+
+TASK  # 4:
+#include <stdio.h>
+#include <string.h>
+
+struct Patient {
+    char name[50], blood[5], note[100];
+    int age, id;
+};
+
+void printPatients(struct Patient x[], int size) {
+    for (int i = 0; i < size; i++) {
+        printf("\n[%d] %s | %d yrs | %s | ID:%d\n",
+               i + 1, x[i].name, x[i].age, x[i].blood, x[i].id);
+        printf("Diagnosis: %s\n", x[i].note);
+    }
+}
+
+void findPatient(struct Patient x[], int size, int key) {
+    int found = 0;
+    for (int i = 0; i < size; i++) {
+        if (x[i].id == key) {
+            printf("\nRecord Found:\n%s (%d)\n%s\n",
+                   x[i].name, x[i].age, x[i].note);
+            found = 1;
+        }
+    }
+    if (!found)
+        printf("No record exists.\n");
+}
+
+int main() {
+    struct Patient p[5];
+
+    for (int i = 0; i < 5; i++) {
+        printf("\nPatient %d\n", i + 1);
+
+        scanf(" %[^\n]", p[i].name);
+        scanf("%d", &p[i].age);
+        scanf("%s", p[i].blood);
+        scanf("%d", &p[i].id);
+        scanf(" %[^\n]", p[i].note);
+    }
+
+    printPatients(p, 5);
+
+    int id;
+    printf("\nSearch ID: ");
+    scanf("%d", &id);
+
+    findPatient(p, 5, id);
+    return 0;
+}
+
+
+
+
+TASK # 5:
+#include <stdio.h>
+#include <string.h>
+
+struct Dept {
+    char code[10], name[50];
+};
+
+struct Course {
+    char cCode[10], cName[60];
+    int ch;
+    struct Dept d;
+};
+
+void showByDept(struct Course list[], int n, char *code) {
+    for (int i = 0; i < n; i++) {
+        if (!strcmp(list[i].d.code, code))
+            printf("%s - %s\n", list[i].cCode, list[i].cName);
+    }
+}
+
+int main() {
+    struct Course c[3];
+
+    for (int i = 0; i < 3; i++) {
+        scanf("%s", c[i].cCode);
+        scanf(" %[^\n]", c[i].cName);
+        scanf("%d", &c[i].ch);
+        scanf("%s", c[i].d.code);
+        scanf(" %[^\n]", c[i].d.name);
+    }
+
+    for (int i = 0; i < 3; i++) {
+        printf("\n%s (%s)\nDept: %s\n",
+               c[i].cName, c[i].cCode, c[i].d.name);
+    }
+
+    char code[10];
+    printf("\nEnter dept code: ");
+    scanf("%s", code);
+
+    showByDept(c, 3, code);
+    return 0;
+}}
+
+
+
+
+
+
+TASK # 6:
+
+#include <stdio.h>
+#include <string.h>
+
+struct Order {
+    int id, qty;
+    char cust[50], item[50], status[20];
+    float price;
+};
+
+float total(struct Order o) {
+    return o.qty * o.price;
+}
+
+void showStatus(struct Order o[], int n, char *s) {
+    for (int i = 0; i < n; i++) {
+        if (strcmp(o[i].status, s) == 0) {
+            printf("\nID:%d | %s | %s\n",
+                   o[i].id, o[i].cust, o[i].item);
+        }
+    }
+}
+
+int main() {
+    struct Order o[4];
+
+    for (int i = 0; i < 4; i++) {
+        scanf("%d", &o[i].id);
+        scanf(" %[^\n]", o[i].cust);
+        scanf(" %[^\n]", o[i].item);
+        scanf("%d", &o[i].qty);
+        scanf("%f", &o[i].price);
+        scanf("%s", o[i].status);
+    }
+
+    for (int i = 0; i < 4; i++)
+        printf("Order %d Total: %.2f\n", i + 1, total(o[i]));
+
+    char s[20];
+    printf("Filter status: ");
+    scanf("%s", s);
+
+    showStatus(o, 4, s);
+    return 0;
+}
+
+
