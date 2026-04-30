@@ -1,0 +1,94 @@
+
+TASK # 1:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    float *grades;
+
+    printf("Enter number of students: ");
+    scanf("%d", &n);
+
+    grades = (float*) malloc(n * sizeof(float));
+
+    for(int i = 0; i < n; i++) {
+        printf("Enter grade: ");
+        scanf("%f", &grades[i]);
+    }
+
+    printf("Grades:\n");
+    for(int i = 0; i < n; i++) {
+        printf("%.2f\n", grades[i]);
+    }
+
+    free(grades);
+    return 0;
+}
+
+
+TASK 2:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int *contacts;
+
+    contacts = (int*) malloc(3 * sizeof(int));
+
+    for(int i = 0; i < 3; i++) {
+        printf("Enter contact: ");
+        scanf("%d", &contacts[i]);
+    }
+
+    contacts = (int*) realloc(contacts, 5 * sizeof(int));
+
+    for(int i = 3; i < 5; i++) {
+        printf("Enter contact: ");
+        scanf("%d", &contacts[i]);
+    }
+
+    printf("Contacts:\n");
+    for(int i = 0; i < 5; i++) {
+        printf("%d ", contacts[i]);
+    }
+
+    free(contacts);
+    return 0;
+}
+
+
+TASK # 3:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    float *buffer;
+
+    printf("Enter number of sensors: ");
+    scanf("%d", &n);
+
+    buffer = (float*) calloc(n, sizeof(float));
+
+    printf("Initial values:\n");
+    for(int i = 0; i < n; i++) {
+        printf("%.2f ", buffer[i]);
+    }
+
+    printf("\nEnter values:\n");
+    for(int i = 0; i < n; i++) {
+        scanf("%f", &buffer[i]);
+    }
+
+    printf("Data:\n");
+    for(int i = 0; i < n; i++) {
+        printf("%.2f ", buffer[i]);
+    }
+
+    free(buffer);
+    return 0;
+}
